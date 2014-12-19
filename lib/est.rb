@@ -78,7 +78,7 @@ module Est
             xml.total estimates.total
             xml.ests do
               estimates.iterate.each do |est|
-                xml.est do
+                xml.est('id' => est.id) do
                   xml.date est.date
                   xml.total est.total
                   xml.author est.author

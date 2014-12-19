@@ -39,6 +39,11 @@ module Est
       fail "failed to read file #{file}" unless @yaml
     end
 
+    # Get id.
+    def id
+      @yaml['id']
+    end
+
     # Get date.
     def date
       Date.strptime(@yaml['date'], '%d-%m-%Y')
