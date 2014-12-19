@@ -22,10 +22,24 @@
  * SOFTWARE.
  -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="est">
+    <xs:all>
+      <xs:element name="total" type="xs:int"/>
+      <xs:element name="date" type="xs:date"/>
+      <xs:element name="author" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
   <xs:element name="estimate">
     <xs:complexType>
       <xs:all>
         <xs:element name="total" type="xs:int"/>
+        <xs:element name="ests">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="est" type="est" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:all>
       <xs:attribute name="version" use="required" type="xs:string"/>
       <xs:attribute name="date" use="required" type="xs:dateTime"/>

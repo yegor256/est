@@ -21,36 +21,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'est/estimate'
-require 'nokogiri'
+require 'est/version'
 require 'logger'
-require 'time'
 
-# Est main module.
+# Single estimate.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
 module Est
   # Code base abstraction
-  class Estimates
+  class Estimate
     # Ctor.
-    # +dir+:: Directory with estimates
-    def initialize(dir)
-      @dir = dir
+    # +file+:: File with YAML estimate
+    def initialize(file)
+      @file = file
+    end
+
+    # Get date.
+    def date
+      Date.strptime('23-12-2013', '%d-%m-%Y')
+    end
+
+    # Get author.
+    def author
+      'Yegor Bugayenko'
     end
 
     # Get total estimate.
     def total
-      estimates = iterate
-      fail 'not enough estimates' if estimates.empty?
-      estimates.reduce(0) { |a, e| a + e.total } / estimates.size
-    end
-
-    # Iterate them all
-    def iterate
-      Dir.entries(@dir)
-        .reject { |f| f.index('.') == 0 }
-        .map { |f| Estimate.new(File.join(@dir, f)) }
+      456
     end
   end
 end

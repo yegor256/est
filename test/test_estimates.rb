@@ -21,36 +21,48 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'est/estimate'
+require 'minitest/autorun'
 require 'nokogiri'
-require 'logger'
-require 'time'
+require 'est/estimates'
+require 'tmpdir'
+require 'slop'
 
-# Est main module.
+# Est main module test.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
-module Est
-  # Code base abstraction
-  class Estimates
-    # Ctor.
-    # +dir+:: Directory with estimates
-    def initialize(dir)
-      @dir = dir
-    end
-
-    # Get total estimate.
-    def total
-      estimates = iterate
-      fail 'not enough estimates' if estimates.empty?
-      estimates.reduce(0) { |a, e| a + e.total } / estimates.size
-    end
-
-    # Iterate them all
-    def iterate
-      Dir.entries(@dir)
-        .reject { |f| f.index('.') == 0 }
-        .map { |f| Estimate.new(File.join(@dir, f)) }
+class TestEstimates < Minitest::Test
+  def test_basic_calculation
+    Dir.mktmpdir 'test' do |dir|
+      File.write(
+        File.join(dir, 'first.est'),
+        '''
+        date: 12-Dec-2014
+        author: Yegor Bugayenko
+        method: champions.pert
+        scope:
+          1: basic Sinatra scaffolding
+          2: front-end HAML files
+          3: SASS stylesheet
+          4: five model classes with unit tests
+          5: PostgreSQL migrations
+          6: Cucumber tests for PostgreSQL
+          7: Capybara tests for HTML front
+          8: CasperJS tests
+          9: achieve 80% test coverage
+        champions:
+          7:
+            worst-case: 40
+            best-case: 10
+            most-likely: 18
+          4:
+            worst-case: 30
+            best-case: 8
+            most-likely: 16
+        '''
+      )
+      estimates = Est::Estimates.new(dir)
+      assert_equal 456, estimates.total
     end
   end
 end
