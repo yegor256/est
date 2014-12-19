@@ -23,6 +23,7 @@
 
 require 'est/version'
 require 'logger'
+require 'yaml'
 
 # Single estimate.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
@@ -34,17 +35,18 @@ module Est
     # Ctor.
     # +file+:: File with YAML estimate
     def initialize(file)
-      @file = file
+      @yaml = YAML.load_file(file)
+      fail "failed to read file #{file}" unless @yaml
     end
 
     # Get date.
     def date
-      Date.strptime('23-12-2013', '%d-%m-%Y')
+      Date.strptime(@yaml['date'], '%d-%m-%Y')
     end
 
     # Get author.
     def author
-      'Yegor Bugayenko'
+      @yaml['author']
     end
 
     # Get total estimate.

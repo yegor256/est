@@ -23,7 +23,7 @@
 
 require 'minitest/autorun'
 require 'nokogiri'
-require 'est'
+require 'est/estimates'
 require 'tmpdir'
 require 'slop'
 
@@ -31,15 +31,15 @@ require 'slop'
 # Author:: Yegor Bugayenko (yegor@teamed.io)
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
-class TestEst < Minitest::Test
-  def test_basic
+class TestEstimate < Minitest::Test
+  def test_basic_calculation
     Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-d', dir])
+      file = File.join(dir, 'first.est')
       File.write(
-        File.join(dir, 'sample.est'),
+        file,
         '''
-        date: 12-07-2014
-        author: Yegor Bugayenko
+        date: 18-12-2014
+        author: Jeff Lebowski
         method: champions.pert
         scope:
           1: basic Sinatra scaffolding
@@ -62,28 +62,10 @@ class TestEst < Minitest::Test
             most-likely: 16
         '''
       )
-      matches(
-        Nokogiri::XML(Est::Base.new(opts).xml),
-        [
-          '/processing-instruction("xml-stylesheet")[contains(.,".xsl")]',
-          '/estimate/@version',
-          '/estimate/@date',
-          '/estimate[total="456"]'
-        ]
-      )
-    end
-  end
-
-  def opts(args)
-    Slop.parse args do
-      on 'v', 'verbose'
-      on 'd', 'dir', argument: :required
-    end
-  end
-
-  def matches(xml, xpaths)
-    xpaths.each do |xpath|
-      fail "doesn't match '#{xpath}': #{xml}" unless xml.xpath(xpath).size == 1
+      estimate = Est::Estimate.new(file)
+      assert_equal Date.parse('18-12-2014'), estimate.date
+      assert_equal 'Jeff Lebowski', estimate.author
+      assert_equal 456, estimate.total
     end
   end
 end

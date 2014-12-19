@@ -4,6 +4,8 @@ branches:
   only:
     - master
 install:
+  - sudo apt-get update
+  - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
   - travis_retry bundle install
 script:
   - rake

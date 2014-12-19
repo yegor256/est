@@ -37,7 +37,7 @@ class TestEstimates < Minitest::Test
       File.write(
         File.join(dir, 'first.est'),
         '''
-        date: 12-Dec-2014
+        date: 12-08-2014
         author: Yegor Bugayenko
         method: champions.pert
         scope:

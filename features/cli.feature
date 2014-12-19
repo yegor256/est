@@ -14,7 +14,7 @@ Feature: Command Line Processing
   Scenario: Simple estimate calculating
     Given I have a "sample.est" file with content:
     """
-    date: 12-Dec-2014
+    date: 19-08-2014
     author: Yegor Bugayenko
     method: champions.pert
     scope:
@@ -43,7 +43,7 @@ Feature: Command Line Processing
     And XML file "out.xml" matches "/estimate[total='456']"
 
   Scenario: Rejects unknown options
-    Given I have a "test.txt" file with content:
+    Given I have a "test.est" file with content:
     """
     """
     When I run bin/est with "--some-unknown-option"

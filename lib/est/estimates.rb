@@ -50,6 +50,7 @@ module Est
     def iterate
       Dir.entries(@dir)
         .reject { |f| f.index('.') == 0 }
+        .select { |f| f =~ /^.*\.est$/ }
         .map { |f| Estimate.new(File.join(@dir, f)) }
     end
   end

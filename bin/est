@@ -73,7 +73,7 @@ if opts[:format]
   if opts[:format] == 'html'
     xslt = File.join(
       File.dirname(File.dirname(__FILE__)),
-      'assets', 'puzzles.xsl'
+      'assets', 'est.xsl'
     )
     output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
   else
