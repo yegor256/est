@@ -26,7 +26,6 @@ Here is an example of an estimate file for a simple web app:
 date: 19-12-2014
 author: Yegor Bugayenko
 method: champions.pert
-units: hours
 scope:
   1: basic Sinatra scaffolding
   2: front-end HAML files
