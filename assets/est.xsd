@@ -25,8 +25,7 @@
   <xs:element name="estimate">
     <xs:complexType>
       <xs:all>
-        <xs:element name="units" type="xs:string"/>
-        <xs:element name="total" type="xs:number"/>
+        <xs:element name="total" type="xs:int"/>
       </xs:all>
       <xs:attribute name="version" use="required" type="xs:string"/>
       <xs:attribute name="date" use="required" type="xs:dateTime"/>

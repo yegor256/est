@@ -17,7 +17,6 @@ Feature: Command Line Processing
     date: 12-Dec-2014
     author: Yegor Bugayenko
     method: champions.pert
-    units: hours
     scope:
       1: basic Sinatra scaffolding
       2: front-end HAML files
@@ -41,7 +40,7 @@ Feature: Command Line Processing
     When I run bin/est with "-v -d . -f out.xml"
     Then Exit code is zero
     And Stdout contains "reading ."
-    And XML file "out.xml" matches "/estimate[total='452']"
+    And XML file "out.xml" matches "/estimate[total='456']"
 
   Scenario: Rejects unknown options
     Given I have a "test.txt" file with content:

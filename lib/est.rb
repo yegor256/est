@@ -21,12 +21,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'est/sources'
 require 'est/version'
-require 'est/rule/estimates'
-require 'est/rule/text'
-require 'est/rule/duplicates'
-require 'est/rule/roles'
+require 'est/estimates'
 require 'nokogiri'
 require 'logger'
 require 'time'
@@ -74,13 +70,12 @@ module Est
     def xml
       dir = @opts.dir? ? @opts[:dir] : Dir.pwd
       Est.log.info "reading #{dir}"
-      sources = Estimates.new(dir)
+      estimates = Estimates.new(dir)
       sanitize(
         Nokogiri::XML::Builder.new do |xml|
           xml << "<?xml-stylesheet type='text/xsl' href='#{xsl}'?>"
           xml.estimate(attrs) do
-            xml.total = estimates.total
-            xml.units = estimates.units
+            xml.total estimates.total
           end
         end.to_xml
       )

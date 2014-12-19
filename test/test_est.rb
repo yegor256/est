@@ -34,37 +34,50 @@ require 'slop'
 class TestEst < Minitest::Test
   def test_basic
     Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-s', dir, '-e', '**/*.png', '-r', 'max-estimate:15'])
-      File.write(File.join(dir, 'a.txt'), '@todo #55 hello!')
+      opts = opts(['-v', '-d', dir])
+      File.write(
+        File.join(dir, 'sample.est'),
+        '''
+        date: 12-Dec-2014
+        author: Yegor Bugayenko
+        method: champions.pert
+        scope:
+          1: basic Sinatra scaffolding
+          2: front-end HAML files
+          3: SASS stylesheet
+          4: five model classes with unit tests
+          5: PostgreSQL migrations
+          6: Cucumber tests for PostgreSQL
+          7: Capybara tests for HTML front
+          8: CasperJS tests
+          9: achieve 80% test coverage
+        champions:
+          7:
+            worst-case: 40
+            best-case: 10
+            most-likely: 18
+          4:
+            worst-case: 30
+            best-case: 8
+            most-likely: 16
+        '''
+      )
       matches(
         Nokogiri::XML(Est::Base.new(opts).xml),
         [
           '/processing-instruction("xml-stylesheet")[contains(.,".xsl")]',
-          '/puzzles/@version',
-          '/puzzles/@date',
-          '/puzzles[count(puzzle)=1]',
-          '/puzzles/puzzle[file="a.txt"]'
+          '/estimate/@version',
+          '/estimate/@date',
+          '/estimate[total="456"]'
         ]
       )
-    end
-  end
-
-  def test_rules_failure
-    Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-s', dir, '-e', '**/*.png', '-r', 'min-estimate:30'])
-      File.write(File.join(dir, 'a.txt'), '@todo #90 hello!')
-      assert_raises Est::Error do
-        Est::Base.new(opts).xml
-      end
     end
   end
 
   def opts(args)
     Slop.parse args do
       on 'v', 'verbose'
-      on 's', 'source', argument: :required
-      on 'e', 'exclude', as: Array, argument: :required
-      on 'r', 'rule', as: Array, argument: :required
+      on 'd', 'dir', argument: :required
     end
   end
 

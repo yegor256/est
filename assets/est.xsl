@@ -57,8 +57,8 @@
         <div>
           <h1>Estimate</h1>
           <p>
+            <xsl:text>Total: </xsl:text>
             <xsl:value-of select="total"/>
-            <xsl:value-of select="units"/>
           </p>
         </div>
       </body>
