@@ -23,7 +23,7 @@ Every estimate should be in its own file, with `.yml` extension (YAML format).
 Here is an example of an estimate file for a simple web app:
 
 ```yaml
-date: 12-Dec-2014
+date: 19-12-2014
 author: Yegor Bugayenko
 method: champions.pert
 units: hours
