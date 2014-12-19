@@ -31,7 +31,7 @@ require 'time'
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
 module Est
-  # Code base abstraction
+  # Estimates.
   class Estimates
     # Ctor.
     # +dir+:: Directory with estimates

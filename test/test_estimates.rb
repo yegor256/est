@@ -62,7 +62,7 @@ class TestEstimates < Minitest::Test
         '''
       )
       estimates = Est::Estimates.new(dir)
-      assert_equal 456, estimates.total
+      assert_equal 54, estimates.total
     end
   end
 end

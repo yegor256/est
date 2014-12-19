@@ -41,7 +41,7 @@ Feature: Command Line Processing
     When I run bin/est with "-v -d . -f out.xml"
     Then Exit code is zero
     And Stdout contains "reading ."
-    And XML file "out.xml" matches "/estimate[total='456']"
+    And XML file "out.xml" matches "/estimate[total='54']"
 
   Scenario: Rejects unknown options
     Given I have a "test.est" file with content:

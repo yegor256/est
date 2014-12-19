@@ -22,7 +22,6 @@
 # SOFTWARE.
 
 require 'est/version'
-require 'est/methods/champions'
 require 'logger'
 require 'yaml'
 
@@ -31,35 +30,21 @@ require 'yaml'
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
 module Est
-  # Estimate.
-  class Estimate
+  # Scope Champions.
+  class Champions
     # Ctor.
-    # +file+:: File with YAML estimate
-    def initialize(file)
-      @yaml = YAML.load_file(file)
-      fail "failed to read file #{file}" unless @yaml
-    end
-
-    # Get id.
-    def id
-      @yaml['id']
-    end
-
-    # Get date.
-    def date
-      Date.strptime(@yaml['date'], '%d-%m-%Y')
-    end
-
-    # Get author.
-    def author
-      @yaml['author']
+    # +yaml+:: YAML config
+    def initialize(yaml)
+      @yaml = yaml
     end
 
     # Get total estimate.
     def total
-      method = @yaml['method']
-      fail "unsupported method #{method}" unless method == 'champions.pert'
-      Champions.new(@yaml).total
+      reqs = @yaml['scope']
+      champs = @yaml['champions']
+      (champs.map do |_, e|
+        (e['best-case'].to_i + e['worst'].to_i + e['most-likely'].to_i * 4) / 6
+      end.reduce(&:+) * 0.54 * (reqs.size / champs.size)).to_i
     end
   end
 end

@@ -21,45 +21,41 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'est/version'
+require 'minitest/autorun'
 require 'est/methods/champions'
-require 'logger'
 require 'yaml'
 
-# Single estimate.
+# Est main module test.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
 # Copyright:: Copyright (c) 2014 Yegor Bugayenko
 # License:: MIT
-module Est
-  # Estimate.
-  class Estimate
-    # Ctor.
-    # +file+:: File with YAML estimate
-    def initialize(file)
-      @yaml = YAML.load_file(file)
-      fail "failed to read file #{file}" unless @yaml
-    end
-
-    # Get id.
-    def id
-      @yaml['id']
-    end
-
-    # Get date.
-    def date
-      Date.strptime(@yaml['date'], '%d-%m-%Y')
-    end
-
-    # Get author.
-    def author
-      @yaml['author']
-    end
-
-    # Get total estimate.
-    def total
-      method = @yaml['method']
-      fail "unsupported method #{method}" unless method == 'champions.pert'
-      Champions.new(@yaml).total
-    end
+class TestChampions < Minitest::Test
+  def test_basic_calculation
+    method = Est::Champions.new(
+      YAML.load(
+        '''
+        scope:
+          1: basic Sinatra scaffolding
+          2: front-end HAML files
+          3: SASS stylesheet
+          4: five model classes with unit tests
+          5: PostgreSQL migrations
+          6: Cucumber tests for PostgreSQL
+          7: Capybara tests for HTML front
+          8: CasperJS tests
+          9: achieve 80% test coverage
+        champions:
+          7:
+            worst-case: 40
+            best-case: 10
+            most-likely: 18
+          4:
+            worst-case: 30
+            best-case: 8
+            most-likely: 16
+      '''
+      )
+    )
+    assert_equal 54, method.total
   end
 end
