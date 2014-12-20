@@ -67,7 +67,12 @@ end
 
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
-file = opts.file? ? File.new(opts[:file], 'w') : STDOUT
+if opts.file?
+  file = File.new(opts[:file], 'w')
+  Est.log.info "output saving into #{file.path}"
+else
+  file = STDOUT
+end
 output = Est::Base.new(opts).xml
 if opts[:format].nil? || opts[:format] == 'text'
   xslt = File.join(
@@ -88,4 +93,3 @@ else
   fail 'invalid format, use html, text, or xml'
 end
 file << output
-Est.log.info "output saved into #{file}"

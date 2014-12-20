@@ -4,6 +4,7 @@ assets:
 
 install: |
   sudo gem install pdd
+  sudo gem install est
 
 release:
   script: |
@@ -18,3 +19,5 @@ release:
     s3cmd --no-progress put est.xml --config=../s3cfg s3://pdd.teamed.io/est.xml
     s3cmd --no-progress put assets/est.xsd --acl-public --config=../s3cfg s3://est-xsd.teamed.io/${tag}.xsd
     s3cmd --no-progress put assets/est.xsl --acl-public --config=../s3cfg s3://est-xsl.teamed.io/${tag}.xsl
+    est --dir=./est --format=xml --file=est-estimate.xml
+    s3cmd --no-progress put est-estimate.xml --config=../s3cfg s3://est.teamed.io/est.xml
