@@ -19,8 +19,8 @@ Run it locally and read its output:
 $ est --help
 ```
 
-Every estimate should be in its own file, with `.yml` extension (YAML format).
-Here is an example of an estimate file for a simple web app:
+Every estimate should be in its own file, with `.est` extension (YAML format).
+Here is an example of an estimate file `simple.est` for a simple web app:
 
 ```yaml
 date: 19-12-2014

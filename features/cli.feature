@@ -14,7 +14,6 @@ Feature: Command Line Processing
   Scenario: Simple estimate calculating
     Given I have a "sample.est" file with content:
     """
-    id: 789
     date: 19-08-2014
     author: Yegor Bugayenko
     method: champions.pert

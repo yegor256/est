@@ -60,8 +60,16 @@
             <xsl:text>Total: </xsl:text>
             <xsl:value-of select="total"/>
           </p>
+          <xsl:apply-templates select="estimate/ests/est"/>
         </div>
       </body>
     </html>
+  </xsl:template>
+  <xsl:template match="ests/est">
+    <xsl:value-of select="date"/>
+    <xsl:text>: </xsl:text>
+    <strong><xsl:value-of select="total"/></strong>
+    <xsl:text> hours by </xsl:text>
+    <xsl:value-of select="author"/>
   </xsl:template>
 </xsl:stylesheet>

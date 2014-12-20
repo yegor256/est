@@ -38,7 +38,6 @@ class TestEst < Minitest::Test
       File.write(
         File.join(dir, 'sample.est'),
         '''
-        id: 5
         date: 12-07-2014
         author: Yegor Bugayenko
         method: champions.pert
@@ -70,8 +69,7 @@ class TestEst < Minitest::Test
           '/estimate/@version',
           '/estimate/@date',
           '/estimate[total="54"]',
-          '/estimate/ests[count(est)=1]',
-          '/estimate/ests/est[@id="5"]'
+          '/estimate/ests[count(est)=1]'
         ]
       )
     end

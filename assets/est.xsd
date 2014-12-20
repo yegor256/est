@@ -28,7 +28,6 @@
       <xs:element name="date" type="xs:date"/>
       <xs:element name="author" type="xs:string"/>
     </xs:all>
-    <xs:attribute name="id" use="required" type="xs:int"/>
   </xs:complexType>
   <xs:element name="estimate">
     <xs:complexType>
