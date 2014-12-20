@@ -71,6 +71,7 @@ file = opts.file? ? File.new(opts[:file], 'w') : STDOUT
 output = Est::Base.new(opts).xml
 if opts[:format]
   if opts[:format] == 'html'
+    Est.log.info 'using HTML format'
     xslt = File.join(
       File.dirname(File.dirname(__FILE__)),
       'assets', 'est.xsl'
@@ -81,3 +82,4 @@ if opts[:format]
   end
 end
 file << output
+Est.log.info "output saved into #{file}"

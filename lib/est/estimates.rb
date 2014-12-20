@@ -51,7 +51,9 @@ module Est
       Dir.entries(@dir)
         .reject { |f| f.index('.') == 0 }
         .select { |f| f =~ /^.*\.est$/ }
-        .map { |f| Estimate.new(File.join(@dir, f)) }
+        .map { |f| File.join(@dir, f) }
+        .each { |f| Est.log.info "#{f} found" }
+        .map { |f| Estimate.new(f) }
     end
   end
 end
