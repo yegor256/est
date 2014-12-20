@@ -48,7 +48,7 @@ opts = Slop.parse(ARGV, strict: true, help: true) do
   on(
     't',
     'format',
-    'Format to use (xml|html)',
+    'Format to use (xml|html|text)',
     argument: :required
   )
 end
@@ -69,17 +69,23 @@ Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 file = opts.file? ? File.new(opts[:file], 'w') : STDOUT
 output = Est::Base.new(opts).xml
-if opts[:format]
-  if opts[:format] == 'html'
-    Est.log.info 'using HTML format'
-    xslt = File.join(
-      File.dirname(File.dirname(__FILE__)),
-      'assets', 'est.xsl'
-    )
-    output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
-  else
-    fail 'invalid format, use html or xml' if opts[:format] != 'xml'
-  end
+if opts[:format].nil? || opts[:format] == 'text'
+  xslt = File.join(
+    File.dirname(File.dirname(__FILE__)),
+    'assets', 'est-text.xsl'
+  )
+  output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
+elsif opts[:format] == 'html'
+  Est.log.info 'using HTML format'
+  xslt = File.join(
+    File.dirname(File.dirname(__FILE__)),
+    'assets', 'est.xsl'
+  )
+  output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
+elsif opts[:format] == 'xml'
+  Est.log.info 'using XML format'
+else
+  fail 'invalid format, use html, text, or xml'
 end
 file << output
 Est.log.info "output saved into #{file}"
