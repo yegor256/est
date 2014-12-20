@@ -66,6 +66,6 @@ Cucumber::Rake::Task.new(:features) do |t|
   Rake::Cleaner.cleanup_files(['coverage'])
   t.profile = 'travis'
 end
-Cucumber::Rake::Task.new(:"features:html") do |t|
+Cucumber::Rake::Task.new(:'features:html') do |t|
   t.profile = 'html_report'
 end
