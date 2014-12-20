@@ -42,7 +42,6 @@ module Est
     # Get total estimate.
     def total
       estimates = iterate
-      fail 'not enough estimates' if estimates.empty?
       estimates.reduce(0) do |a, e|
         Est.log.info "#{e.date}/#{e.author}: #{e.total}"
         a + e.total
@@ -60,6 +59,7 @@ module Est
           .map { |f| Estimate.new(f) }
           .map { |f| Estimate::Const.new(f) }
       end
+      fail "no .est files found in #{@dir}" if @iterate.empty?
       @iterate
     end
 
