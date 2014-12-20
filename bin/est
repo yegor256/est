@@ -79,7 +79,7 @@ if opts[:format].nil? || opts[:format] == 'text'
     File.dirname(File.dirname(__FILE__)),
     'assets', 'est-text.xsl'
   )
-  output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
+  output = Nokogiri::XSLT(File.read(xslt)).apply_to(Nokogiri::XML(output))
 elsif opts[:format] == 'html'
   Est.log.info 'using HTML format'
   xslt = File.join(
