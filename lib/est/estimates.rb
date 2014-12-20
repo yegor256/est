@@ -56,13 +56,18 @@ module Est
     # Iterate them all
     def iterate
       unless @iterate
-        @iterate = Dir.entries(@dir)
-          .reject { |f| f.index('.') == 0 }
-          .select { |f| f =~ /^.*\.est$/ }
-          .map { |f| File.join(@dir, f) }
-          .each { |f| Est.log.info "#{f} found" }
-          .map { |f| Estimate.new(f) }
-          .map { |f| Estimate::Const.new(f) }
+        if File.exist?(@dir) && File.directory?(@dir)
+          @iterate = Dir.entries(@dir)
+            .reject { |f| f.index('.') == 0 }
+            .select { |f| f =~ /^.*\.est$/ }
+            .map { |f| File.join(@dir, f) }
+            .each { |f| Est.log.info "#{f} found" }
+            .map { |f| Estimate.new(f) }
+            .map { |f| Estimate::Const.new(f) }
+        else
+          Est.log.info "#{@dir} is absent or is not a directory"
+          @iterate = []
+        end
       end
       @iterate
     end

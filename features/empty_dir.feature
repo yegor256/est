@@ -10,3 +10,12 @@ Feature: Command Line Processing
     When I run bin/est with "--dir=. --format=text"
     Then Exit code is zero
     And Stdout contains "Total: 0"
+
+  Scenario: Estimates absent directory
+    Given I have a "test.txt" file with content:
+    """
+    hello
+    """
+    When I run bin/est with "--dir=./absent-dir --format=text"
+    Then Exit code is zero
+    And Stdout contains "Total: 0"
