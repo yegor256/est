@@ -1,0 +1,19 @@
+date: 20-12-2014
+author: Yegor Bugayenko
+method: champions.pert
+scope:
+  1: ruby gem scaffolding
+  2: integration tests with Cucumber
+  3: user documentation
+  4: first estimation model
+  5: more estimation models
+  6: continuous integration configs
+champions:
+  4:
+    worst-case: 6
+    best-case: 1
+    most-likely: 2
+  5:
+    worst-case: 10
+    best-case: 2
+    most-likely: 4
