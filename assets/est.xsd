@@ -33,7 +33,7 @@
     <xs:complexType>
       <xs:all>
         <xs:element name="total" type="xs:int"/>
-        <xs:element name="ests">
+        <xs:element name="ests" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="est" type="est" minOccurs="1" maxOccurs="unbounded" />

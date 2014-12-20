@@ -42,10 +42,15 @@ module Est
     # Get total estimate.
     def total
       estimates = iterate
-      estimates.reduce(0) do |a, e|
-        Est.log.info "#{e.date}/#{e.author}: #{e.total}"
-        a + e.total
-      end / estimates.size
+      if estimates.empty?
+        total = 0
+      else
+        total = estimates.reduce(0) do |a, e|
+          Est.log.info "#{e.date}/#{e.author}: #{e.total}"
+          a + e.total
+        end / estimates.size
+      end
+      total
     end
 
     # Iterate them all
@@ -59,7 +64,6 @@ module Est
           .map { |f| Estimate.new(f) }
           .map { |f| Estimate::Const.new(f) }
       end
-      fail "no .est files found in #{@dir}" if @iterate.empty?
       @iterate
     end
 

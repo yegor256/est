@@ -76,12 +76,14 @@ module Est
           xml << "<?xml-stylesheet type='text/xsl' href='#{xsl}'?>"
           xml.estimate(attrs) do
             xml.total estimates.total
-            xml.ests do
-              estimates.iterate.each do |est|
-                xml.est do
-                  xml.date est.date
-                  xml.total est.total
-                  xml.author est.author
+            unless estimates.iterate.empty?
+              xml.ests do
+                estimates.iterate.each do |est|
+                  xml.est do
+                    xml.date est.date
+                    xml.total est.total
+                    xml.author est.author
+                  end
                 end
               end
             end

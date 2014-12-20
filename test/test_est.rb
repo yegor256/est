@@ -75,6 +75,21 @@ class TestEst < Minitest::Test
     end
   end
 
+  def test_empty_dir
+    Dir.mktmpdir 'test' do |dir|
+      opts = opts(['-v', '-d', dir])
+      matches(
+        Nokogiri::XML(Est::Base.new(opts).xml),
+        [
+          '/estimate/@version',
+          '/estimate/@date',
+          '/estimate[total="0"]',
+          '/estimate[not(ests)]'
+        ]
+      )
+    end
+  end
+
   def opts(args)
     Slop.parse args do
       on 'v', 'verbose'
