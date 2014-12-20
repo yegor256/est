@@ -70,7 +70,7 @@ module Est
     def xml
       dir = @opts.dir? ? @opts[:dir] : Dir.pwd
       Est.log.info "reading #{dir}"
-      estimates = Estimates.new(dir)
+      estimates = Estimates::Const.new(Estimates.new(dir))
       sanitize(
         Nokogiri::XML::Builder.new do |xml|
           xml << "<?xml-stylesheet type='text/xsl' href='#{xsl}'?>"

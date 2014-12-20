@@ -31,6 +31,7 @@ require 'yaml'
 # License:: MIT
 module Est
   # Scope Champions.
+  # see http://www.technoparkcorp.com/innovations/scope-champions/
   class Champions
     # Ctor.
     # +yaml+:: YAML config
@@ -40,11 +41,21 @@ module Est
 
     # Get total estimate.
     def total
-      reqs = @yaml['scope']
+      n = @yaml['scope'].size
       champs = @yaml['champions']
-      (champs.map do |_, e|
-        (e['best-case'].to_i + e['worst'].to_i + e['most-likely'].to_i * 4) / 6
-      end.reduce(&:+) * 0.54 * (reqs.size / champs.size)).to_i
+      m = champs.size
+      k = 0.54
+      sum = champs.map do |i, e|
+        total = (e['best-case'].to_i +
+          e['worst'].to_i +
+          e['most-likely'].to_i * 4) / 6
+        Est.log.info "#{i}: (#{e['best-case']} + #{e['worst-case']} +"\
+          " #{e['most-likely']} * 4) / 6 = #{total}"
+        total
+      end.reduce(&:+)
+      total = sum * k * (n / m)
+      Est.log.info "#{sum} * #{k} * (#{n} / #{m}) = #{total}"
+      total.to_i
     end
   end
 end

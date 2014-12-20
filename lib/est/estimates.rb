@@ -43,17 +43,35 @@ module Est
     def total
       estimates = iterate
       fail 'not enough estimates' if estimates.empty?
-      estimates.reduce(0) { |a, e| a + e.total } / estimates.size
+      estimates.reduce(0) do |a, e|
+        Est.log.info "#{e.date}/#{e.author}: #{e.total}"
+        a + e.total
+      end / estimates.size
     end
 
     # Iterate them all
     def iterate
-      Dir.entries(@dir)
-        .reject { |f| f.index('.') == 0 }
-        .select { |f| f =~ /^.*\.est$/ }
-        .map { |f| File.join(@dir, f) }
-        .each { |f| Est.log.info "#{f} found" }
-        .map { |f| Estimate.new(f) }
+      unless @iterate
+        @iterate = Dir.entries(@dir)
+          .reject { |f| f.index('.') == 0 }
+          .select { |f| f =~ /^.*\.est$/ }
+          .map { |f| File.join(@dir, f) }
+          .each { |f| Est.log.info "#{f} found" }
+          .map { |f| Estimate.new(f) }
+          .map { |f| Estimate::Const.new(f) }
+      end
+      @iterate
+    end
+
+    # Const estimates.
+    class Const
+      attr_reader :total, :iterate
+      # Ctor.
+      # +est+:: Original estimates
+      def initialize(est)
+        @iterate = est.iterate
+        @total = est.total
+      end
     end
   end
 end

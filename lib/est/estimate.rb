@@ -56,5 +56,17 @@ module Est
       fail "unsupported method #{method}" unless method == 'champions.pert'
       Champions.new(@yaml).total
     end
+
+    # Constant estimate.
+    class Const
+      attr_reader :date, :author, :total
+      # Ctor.
+      # +est+:: Estimate
+      def initialize(est)
+        @date = est.date
+        @author = est.author
+        @total = est.total
+      end
+    end
   end
 end
