@@ -1,13 +1,11 @@
 assets:
-  rubygems.yml: "yegor256/home#assets/rubygems.yml"
-  s3cfg: "yegor256/home#assets/s3cfg"
-
+  rubygems.yml: yegor256/home#assets/rubygems.yml
+  s3cfg: yegor256/home#assets/s3cfg
 install: |
   sudo gem install pdd
   sudo gem install est
-
 release:
-  script: |
+  script: |-
     sudo bundle install
     rake
     rm -rf *.gem
@@ -23,3 +21,7 @@ release:
     s3cmd --no-progress put assets/est.xsl --acl-public --config=../s3cfg s3://est-xsl.teamed.io/${tag}.xsl
     est --dir=./est --format=xml --file=est-estimate.xml
     s3cmd --no-progress put est-estimate.xml --config=../s3cfg s3://est.teamed.io/est.xml
+architect:
+- yegor256
+- yegor256
+- davvd
