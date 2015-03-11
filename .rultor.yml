@@ -22,6 +22,5 @@ release:
     est --dir=./est --format=xml --file=est-estimate.xml
     s3cmd --no-progress put est-estimate.xml --config=../s3cfg s3://est.teamed.io/est.xml
 architect:
-- yegor256
-- yegor256
 - davvd
+- yegor256
