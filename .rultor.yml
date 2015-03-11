@@ -21,6 +21,8 @@ release:
     s3cmd --no-progress put assets/est.xsl --acl-public --config=../s3cfg s3://est-xsl.teamed.io/${tag}.xsl
     est --dir=./est --format=xml --file=est-estimate.xml
     s3cmd --no-progress put est-estimate.xml --config=../s3cfg s3://est.teamed.io/est.xml
+  commanders:
+  - yegor256
 architect:
 - davvd
 - yegor256
