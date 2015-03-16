@@ -86,4 +86,28 @@ case is how many hours would this work take if everything would go easy
 and without any risks. Most likely is how much would it take, in a normal
 situation, according to your estimate.
 
+## Best Practices
 
+**Don't Look Back**. Try not to look into previous estimates
+made in the project. It's tempting, but try to control yourself. Create
+your own estimate first and then look at others that already exist in
+the project.
+
+**Coding Time Only**. Estimate code writing time only. Don't estimate
+time you would spend on discussions, thinking, modeling, diagramming,
+documenting etc. The estimate should count only the time you, as a single
+programmer in the project, would spend on code writing.
+
+**Estimate Regularly**. Re-estimate the entire project from scratch regularly.
+In each estimate look at the project as a whole and estimate the entire
+scope. Not what's left, but the entire scope, as if you would need to
+re-create it all from scretch. Even if the project is close to its end,
+don't stop re-estimating it.
+
+**Change Estimators**. Try to ask everybody in the project to estimate it
+time to time (programmers only). Changing estimators will help the project
+to keep numbers out of bias.
+
+**Count On Your Skills**. Estimate the amount of work you would need to
+develop the product, not some abstract programmer. Rely on your personal
+skills, speed and expertise.
