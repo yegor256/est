@@ -1,5 +1,6 @@
 [![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
 [![DevOps By Rultor.com](http://www.rultor.com/b/teamed/est)](http://www.rultor.com/p/teamed/est)
+[![We recommend RubyMine](http://img.teamed.io/rubymine-recommend.svg)](https://www.jetbrains.com/ruby/)
 
 [![Build Status](https://travis-ci.org/teamed/est.svg)](https://travis-ci.org/teamed/est)
 [![Gem Version](https://badge.fury.io/rb/est.svg)](http://badge.fury.io/rb/est)
