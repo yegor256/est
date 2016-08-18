@@ -8,9 +8,23 @@
 [![Code Climate](http://img.shields.io/codeclimate/github/teamed/est.svg)](https://codeclimate.com/github/teamed/est)
 [![Coverage Status](https://img.shields.io/coveralls/teamed/est.svg)](https://coveralls.io/r/teamed/est)
 
-Install it first:
+Install it first (Debian Linux):
 
 ```bash
+$ apt-get install -y libmagic1 libmagic-dev zlib1g-dev ruby-dev
+$ gem install est
+```
+
+On RedHat:
+
+```bash
+$ yum install -y libmagic1 libmagic-dev zlib1g-dev ruby-dev
+$ gem install est
+```
+
+On OSX and Windows, just that:
+
+```
 $ gem install est
 ```
 
