@@ -26,5 +26,5 @@
 # Copyright:: Copyright (c) 2014-2016 Yegor Bugayenko
 # License:: MIT
 module Est
-  VERSION = '1.0.snapshot'
+  VERSION = '0.3.2'
 end
