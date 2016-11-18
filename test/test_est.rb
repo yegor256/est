@@ -68,7 +68,7 @@ class TestEst < Minitest::Test
           '/processing-instruction("xml-stylesheet")[contains(.,".xsl")]',
           '/estimate/@version',
           '/estimate/@date',
-          '/estimate[total="54"]',
+          '/estimate[total="79"]',
           '/estimate/ests[count(est)=1]'
         ]
       )

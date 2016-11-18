@@ -56,6 +56,6 @@ class TestChampions < Minitest::Test
       '''
       )
     )
-    assert_equal 54, method.total
+    assert_equal 79, method.total
   end
 end

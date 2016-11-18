@@ -47,7 +47,7 @@ module Est
       k = 0.54
       sum = champs.map do |i, e|
         total = (e['best-case'].to_i +
-          e['worst'].to_i +
+          e['worst-case'].to_i +
           e['most-likely'].to_i * 4) / 6
         Est.log.info "#{i}: (#{e['best-case']} + #{e['worst-case']} +"\
           " #{e['most-likely']} * 4) / 6 = #{total}"
