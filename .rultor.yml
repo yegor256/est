@@ -1,11 +1,12 @@
 assets:
-  rubygems.yml: yegor256/home#assets/rubygems.yml
-  s3cfg: yegor256/home#assets/s3cfg
+  rubygems.yml: zerocracy/home#assets/rubygems.yml
+  s3cfg: zerocracy/home#assets/s3cfg
 install: |
   sudo gem install pdd
   sudo gem install est
 release:
   script: |-
+    pdd --verbose --file=/dev/null
     sudo bundle install
     rake
     rm -rf *.gem
@@ -15,8 +16,6 @@ release:
     gem build est.gemspec
     chmod 0600 ../rubygems.yml
     gem push *.gem --config-file ../rubygems.yml
-    pdd --source=$(pwd) --verbose --file=est.xml
-    s3cmd --no-progress put est.xml --config=../s3cfg s3://pdd.teamed.io/est.xml
     s3cmd --no-progress put assets/est.xsd --acl-public --config=../s3cfg s3://est-xsd.teamed.io/${tag}.xsd
     s3cmd --no-progress put assets/est.xsl --acl-public --config=../s3cfg s3://est-xsl.teamed.io/${tag}.xsl
     est --dir=./est --format=xml --file=est-estimate.xml
