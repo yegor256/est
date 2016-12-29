@@ -1,12 +1,12 @@
 [![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
-[![DevOps By Rultor.com](http://www.rultor.com/b/teamed/est)](http://www.rultor.com/p/teamed/est)
+[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/est)](http://www.rultor.com/p/yegor256/est)
 [![We recommend RubyMine](http://img.teamed.io/rubymine-recommend.svg)](https://www.jetbrains.com/ruby/)
 
-[![Build Status](https://travis-ci.org/teamed/est.svg)](https://travis-ci.org/teamed/est)
+[![Build Status](https://travis-ci.org/yegor256/est.svg)](https://travis-ci.org/yegor256/est)
 [![Gem Version](https://badge.fury.io/rb/est.svg)](http://badge.fury.io/rb/est)
-[![Dependency Status](https://gemnasium.com/teamed/est.svg)](https://gemnasium.com/teamed/est)
-[![Code Climate](http://img.shields.io/codeclimate/github/teamed/est.svg)](https://codeclimate.com/github/teamed/est)
-[![Coverage Status](https://img.shields.io/coveralls/teamed/est.svg)](https://coveralls.io/r/teamed/est)
+[![Dependency Status](https://gemnasium.com/yegor256/est.svg)](https://gemnasium.com/yegor256/est)
+[![Code Climate](http://img.shields.io/codeclimate/github/yegor256/est.svg)](https://codeclimate.com/github/yegor256/est)
+[![Coverage Status](https://img.shields.io/coveralls/yegor256/est.svg)](https://coveralls.io/r/yegor256/est)
 
 Install it first:
 
