@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
-# Copyright (c) 2014-2016 TechnoPark Corp.
-# Copyright (c) 2014-2016 Yegor Bugayenko
+# Copyright (c) 2014-2017 TechnoPark Corp.
+# Copyright (c) 2014-2017 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -29,7 +29,7 @@ require 'slop'
 
 # Est main module test.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
-# Copyright:: Copyright (c) 2014-2016 Yegor Bugayenko
+# Copyright:: Copyright (c) 2014-2017 Yegor Bugayenko
 # License:: MIT
 class TestEstimate < Minitest::Test
   def test_basic_calculation
@@ -38,7 +38,7 @@ class TestEstimate < Minitest::Test
       File.write(
         file,
         '''
-        date: 18-12-2014
+        date: 18-12-2017
         author: Jeff Lebowski
         method: champions.pert
         scope:
@@ -63,7 +63,7 @@ class TestEstimate < Minitest::Test
         '''
       )
       estimate = Est::Estimate.new(file)
-      assert_equal Date.parse('18-12-2014'), estimate.date
+      assert_equal Date.parse('18-12-2017'), estimate.date
       assert_equal 'Jeff Lebowski', estimate.author
       assert_equal 79, estimate.total
     end

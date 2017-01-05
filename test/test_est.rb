@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
-# Copyright (c) 2014-2016 TechnoPark Corp.
-# Copyright (c) 2014-2016 Yegor Bugayenko
+# Copyright (c) 2014-2017 TechnoPark Corp.
+# Copyright (c) 2014-2017 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -29,7 +29,7 @@ require 'slop'
 
 # Est main module test.
 # Author:: Yegor Bugayenko (yegor@teamed.io)
-# Copyright:: Copyright (c) 2014-2016 Yegor Bugayenko
+# Copyright:: Copyright (c) 2014-2017 Yegor Bugayenko
 # License:: MIT
 class TestEst < Minitest::Test
   def test_basic
@@ -38,7 +38,7 @@ class TestEst < Minitest::Test
       File.write(
         File.join(dir, 'sample.est'),
         '''
-        date: 12-07-2014
+        date: 12-07-2017
         author: Yegor Bugayenko
         method: champions.pert
         scope:

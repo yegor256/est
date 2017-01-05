@@ -24,7 +24,7 @@ Every estimate should be in its own file, with `.est` extension (YAML format).
 Here is an example of an estimate file `simple.est` for a simple web app:
 
 ```yaml
-date: 19-12-2014
+date: 19-12-2017
 author: Yegor Bugayenko
 method: champions.pert
 scope:

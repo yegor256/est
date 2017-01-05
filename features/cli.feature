@@ -14,7 +14,7 @@ Feature: Command Line Processing
   Scenario: Simple estimate calculating, in XML
     Given I have a "sample.est" file with content:
     """
-    date: 19-08-2014
+    date: 19-08-2017
     author: Yegor Bugayenko
     method: champions.pert
     scope:
@@ -45,7 +45,7 @@ Feature: Command Line Processing
   Scenario: Simple estimate calculating, in Text
     Given I have a "sample.est" file with content:
     """
-    date: 19-08-2014
+    date: 19-08-2017
     author: Yegor Bugayenko
     method: champions.pert
     scope:
