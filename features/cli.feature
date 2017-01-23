@@ -45,7 +45,7 @@ Feature: Command Line Processing
   Scenario: Simple estimate calculating, in Text
     Given I have a "sample.est" file with content:
     """
-    date: 19-08-2017
+    date: 19-08-2012
     author: Yegor Bugayenko
     method: champions.pert
     scope:
@@ -71,7 +71,7 @@ Feature: Command Line Processing
     When I run bin/est with "-d ."
     Then Exit code is zero
     And Stdout contains "Total: 79"
-    And Stdout contains "2014-08-19: 79 hours by Yegor Bugayenko"
+    And Stdout contains "2012-08-19: 79 hours by Yegor Bugayenko"
 
   Scenario: Rejects unknown options
     Given I have a "test.est" file with content:
