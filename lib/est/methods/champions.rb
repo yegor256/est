@@ -25,7 +25,7 @@ require 'logger'
 require 'yaml'
 
 # Single estimate.
-# Author:: Yegor Bugayenko (yegor@teamed.io)
+# Author:: Yegor Bugayenko (yegor256@gmail.com)
 # Copyright:: Copyright (c) 2014-2017 Yegor Bugayenko
 # License:: MIT
 module Est

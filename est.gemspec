@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.summary = 'Estimates Automated'
   s.description = 'Estimate project size'
   s.authors = ['Yegor Bugayenko']
-  s.email = 'yegor@teamed.io'
+  s.email = 'yegor256@gmail.com'
   s.homepage = 'http://github.com/teamed/est'
   s.files = `git ls-files`.split($RS)
   s.executables = s.files.grep(/^bin\//) { |f| File.basename(f) }
