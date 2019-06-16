@@ -2,8 +2,8 @@ assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
   s3cfg: yegor256/home#assets/s3cfg
 install: |
-  sudo gem install pdd
-  sudo gem install est
+  sudo gem install pdd -v 0.20.5
+  sudo gem install est -v 0.3.4
 release:
   script: |-
     pdd --verbose --file=/dev/null
