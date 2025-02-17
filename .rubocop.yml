@@ -1,2 +1,6 @@
 MethodLength:
   Max: 50
+require:
+  - rubocop-rake
+  - rubocop-minitest
+  - rubocop-performance

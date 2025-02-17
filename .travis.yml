@@ -6,8 +6,7 @@ branches:
   only:
     - master
 install:
-  - sudo apt-get update
+  - sudo apt-get update --yes --fix-missing
   - travis_retry bundle install
 script:
   - rake
-

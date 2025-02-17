@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Copyright (c) 2014-2020 Yegor Bugayenko
+# Copyright (c) 2014-2025 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -44,14 +44,6 @@ Gem::Specification.new do |s|
   s.test_files = s.files.grep(/^(test|spec|features)\//)
   s.rdoc_options = ['--charset=UTF-8']
   s.extra_rdoc_files = ['README.md', 'LICENSE.txt']
-  s.add_runtime_dependency 'nokogiri', '1.6.6.4'
+  s.add_runtime_dependency 'nokogiri', '>0'
   s.add_runtime_dependency 'slop', '3.6.0'
-  s.add_runtime_dependency 'rake', '10.4.2'
-  s.add_development_dependency 'coveralls', '0.7.2'
-  s.add_development_dependency 'rdoc', '4.2.0'
-  s.add_development_dependency 'cucumber', '2.0.1'
-  s.add_development_dependency 'minitest', '5.5.0'
-  s.add_development_dependency 'rubocop', '0.24.1'
-  s.add_development_dependency 'rubocop-rspec', '1.2.1'
-  s.add_development_dependency 'rspec-rails', '3.1.0'
 end

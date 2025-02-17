@@ -5,6 +5,7 @@ install: |
   sudo gem install pdd -v 0.20.5
   sudo gem install est -v 0.3.4
 release:
+  pre: false
   script: |-
     pdd --verbose --file=/dev/null
     sudo bundle install

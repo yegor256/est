@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Copyright (c) 2014-2020 Yegor Bugayenko
+# Copyright (c) 2014-2025 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -22,3 +22,15 @@
 
 source 'https://rubygems.org'
 gemspec
+
+gem 'coveralls', '0.7.2', require: false
+gem 'cucumber', '2.0.1', require: false
+gem 'minitest', '5.5.0', require: false
+gem 'rake', '>0', require: false
+gem 'rdoc', '>0', require: false
+gem 'rspec-rails', '>0', require: false
+gem 'rubocop', '1.72.1', require: false
+gem 'rubocop-minitest', '>0', require: false
+gem 'rubocop-performance', '>0', require: false
+gem 'rubocop-rake', '>0', require: false
+gem 'rubocop-rspec', '>0', require: false
