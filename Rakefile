@@ -52,10 +52,3 @@ Cucumber::Rake::Task.new(:'features:html') do |t|
   t.profile = 'html_report'
 end
 
-task :copyright do
-  sh "grep -q -r '2014-#{Date.today.strftime('%Y')}' \
-    --include '*.rb' \
-    --include '*.txt' \
-    --include 'Rakefile' \
-    ."
-end
