@@ -12,7 +12,7 @@ gem 'minitest', '5.5.0', require: false
 gem 'rake', '>0', require: false
 gem 'rdoc', '>0', require: false
 gem 'rspec-rails', '>0', require: false
-gem 'rubocop', '1.72.1', require: false
+gem 'rubocop', '1.74.0', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
 gem 'rubocop-rake', '>0', require: false
