@@ -8,7 +8,7 @@ gemspec
 
 gem 'coveralls', '0.7.2', require: false
 gem 'cucumber', '2.0.1', require: false
-gem 'minitest', '5.5.0', require: false
+gem 'minitest', '5.25.5', require: false
 gem 'rake', '>0', require: false
 gem 'rdoc', '>0', require: false
 gem 'rspec-rails', '>0', require: false
