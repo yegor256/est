@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2014-2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+---
+# yamllint disable rule:line-length
 assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
   s3cfg: yegor256/home#assets/s3cfg
