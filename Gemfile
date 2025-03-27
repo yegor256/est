@@ -6,12 +6,12 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'coveralls', '0.7.2', require: false
-gem 'cucumber', '2.0.1', require: false
-gem 'minitest', '5.5.0', require: false
+gem 'coveralls', '~>0.7', require: false
+gem 'cucumber', '~>2.0', require: false
+gem 'minitest', '~>5.5', require: false
 gem 'rake', '>0', require: false
 gem 'rdoc', '>0', require: false
-gem 'rubocop', '1.72.1', require: false
+gem 'rubocop', '~>1.72', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
 gem 'rubocop-rake', '>0', require: false
