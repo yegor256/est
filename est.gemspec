@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.description = 'Estimate project size'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
-  s.homepage = 'http://github.com/teamed/est'
+  s.homepage = 'https://github.com/teamed/est'
   s.files = `git ls-files`.split($RS)
   s.executables = s.files.grep(/^bin\//) { |f| File.basename(f) }
   s.test_files = s.files.grep(/^(test|spec|features)\//)
