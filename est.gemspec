@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
   s.homepage = 'https://github.com/teamed/est'
-  s.files = `git ls-files`.split($RS)
+  s.files = `git ls-files | grep -v -E '^(test/|\\.|renovate)'`.split($RS)
   s.executables = s.files.grep(/^bin\//) { |f| File.basename(f) }
   s.test_files = s.files.grep(/^(test|spec|features)\//)
   s.rdoc_options = ['--charset=UTF-8']
