@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2014-2025 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 Feature: Command Line Processing
   As an estimator I want to be able to
