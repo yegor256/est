@@ -8,7 +8,7 @@ gemspec
 
 gem 'coveralls', '~>0.7', require: false
 gem 'cucumber', '~>2.0', require: false
-gem 'minitest', '~>5.5', require: false
+gem 'minitest', '~>6.0', require: false
 gem 'rake', '>0', require: false
 gem 'rdoc', '>0', require: false
 gem 'rubocop', '~>1.72', require: false
