@@ -57,14 +57,14 @@ Total: 27
 
 Scope Champions estimating method was introduced a
 patent application [US 12/193,010](https://www.google.com/patents/US20100042968).
-This article explains it in more details:
+This article explains it in more detail:
 [Revolutionary Method Of Cost Estimating](http://www.technoparkcorp.com/innovations/scope-champions/).
 In a nutshell, there are three steps.
 
 First, you break down the entire implementation scope into items, like
 it's done above, and list them under `scope`. Pay attention, you should list
 only technical code-writing tasks. Testing, requirements analysis, thinking
-and talking should not go into this list. Imagive, what would you do
+and talking should not go into this list. Imagine, what would you do
 if you would be the only programmer working with the product. Imagine, you
 have to create the product from scratch, being the only programmer in house.
 It is important to keep all work items on the same level of abstraction. This
@@ -74,7 +74,7 @@ Second, select a few items from the list (2-3), which are the most difficult
 to implement. They are called "scope champions". List their numbers
 under `champions`, as it's done above.
 
-Third, estimate that champions using [three-point estimating method](https://en.wikipedia.org/wiki/Three-point_estimation).
+Third, estimate those champions using [three-point estimating method](https://en.wikipedia.org/wiki/Three-point_estimation).
 As in the example above, every scope champion should get three numbers.
 Worst case is how many hours you would spend on it, if everything would
 appear to be very difficult and most probable risks would happen. Best
@@ -97,11 +97,11 @@ programmer in the project, would spend on code writing.
 **Estimate Regularly**. Re-estimate the entire project from scratch regularly.
 In each estimate look at the project as a whole and estimate the entire
 scope. Not what's left, but the entire scope, as if you would need to
-re-create it all from scretch. Even if the project is close to its end,
+re-create it all from scratch. Even if the project is close to its end,
 don't stop re-estimating it.
 
 **Change Estimators**. Try to ask everybody in the project to estimate it
-time to time (programmers only). Changing estimators will help the project
+from time to time (programmers only). Changing estimators will help the project
 to keep numbers out of bias.
 
 **Count On Your Skills**. Estimate the amount of work you would need to
