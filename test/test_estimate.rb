@@ -50,4 +50,28 @@ class TestEstimate < Minitest::Test
       assert_equal 79, estimate.total
     end
   end
+
+  def test_rejects_future_date
+    Dir.mktmpdir 'test' do |dir|
+      file = File.join(dir, 'future.est')
+      future = (Date.today + 365).strftime('%d-%m-%Y')
+      File.write(
+        file,
+        "
+        date: #{future}
+        author: Marty McFly
+        method: champions.pert
+        scope:
+          1: basic Sinatra scaffolding
+          2: front-end HAML files
+        champions:
+          2:
+            worst-case: 30
+            best-case: 8
+            most-likely: 16
+        "
+      )
+      assert_raises(RuntimeError) { Est::Estimate.new(file) }
+    end
+  end
 end
