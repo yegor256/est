@@ -20,6 +20,7 @@ module Est
     def initialize(file)
       @yaml = YAML.load_file(file)
       fail "failed to read file #{file}" unless @yaml
+      fail "date #{date} is in the future" if date > Date.today
     end
 
     # Get date.

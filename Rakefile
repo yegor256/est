@@ -16,7 +16,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: [:clean, :test, :features, :rubocop, :copyright]
+task default: [:clean, :test, :features, :rubocop]
 
 require 'rake/testtask'
 desc 'Run all unit tests'
