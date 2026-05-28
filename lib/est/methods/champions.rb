@@ -1,5 +1,3 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
@@ -28,16 +26,13 @@ module Est
       m = champs.size
       k = 0.54
       sum = champs.map do |i, e|
-        total = (e['best-case'].to_i +
-          e['worst-case'].to_i +
-          e['most-likely'].to_i * 4) / 6
-        Est.log.info "#{i}: (#{e['best-case']} + #{e['worst-case']} +"\
-          " #{e['most-likely']} * 4) / 6 = #{total}"
-        total
+        t = (Integer(e['best-case']) + Integer(e['worst-case']) + (Integer(e['most-likely']) * 4)) / 6
+        Est.log.info("#{i}: (#{e['best-case']} + #{e['worst-case']} + #{e['most-likely']} * 4) / 6 = #{t}")
+        t
       end.reduce(&:+)
-      total = sum * k * (n / m)
-      Est.log.info "#{sum} * #{k} * (#{n} / #{m}) = #{total}"
-      total.to_i
+      result = sum * k * (n / m)
+      Est.log.info("#{sum} * #{k} * (#{n} / #{m}) = #{result}")
+      result.floor
     end
   end
 end

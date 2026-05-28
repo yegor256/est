@@ -1,4 +1,3 @@
-# encoding: utf-8
 #
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
@@ -8,5 +7,5 @@
 # Copyright:: Copyright (c) 2014-2026 Yegor Bugayenko
 # License:: MIT
 module Est
-  VERSION = '1.0.snapshot'
+  VERSION = '1.0.snapshot'.freeze
 end

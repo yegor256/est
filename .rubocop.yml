@@ -1,9 +1,21 @@
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
-MethodLength:
+AllCops:
+  TargetRubyVersion: 2.0
+  NewCops: enable
+
+Metrics/MethodLength:
   Max: 50
-require:
+
+Elegant/NoClassInModule:
+  Exclude:
+    - 'lib/**/*'
+    - '**/test_*.rb'
+    - '**/*Test.rb'
+
+plugins:
   - rubocop-rake
   - rubocop-minitest
   - rubocop-performance
+  - rubocop-elegant

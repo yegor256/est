@@ -1,10 +1,8 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-require 'est/version'
 require 'est/methods/champions'
+require 'est/version'
 require 'logger'
 require 'yaml'
 
@@ -19,7 +17,7 @@ module Est
     # +file+:: File with YAML estimate
     def initialize(file)
       @yaml = YAML.load_file(file)
-      fail "failed to read file #{file}" unless @yaml
+      raise(ArgumentError, "failed to read file #{file}") unless @yaml
     end
 
     # Get date.
@@ -34,14 +32,15 @@ module Est
 
     # Get total estimate.
     def total
-      method = @yaml['method']
-      fail "unsupported method #{method}" unless method == 'champions.pert'
+      meth = @yaml['method']
+      raise(ArgumentError, "unsupported method #{meth}") unless meth == 'champions.pert'
       Champions.new(@yaml).total
     end
 
     # Constant estimate.
     class Const
       attr_reader :date, :author, :total
+
       # Ctor.
       # +est+:: Estimate
       def initialize(est)

@@ -1,13 +1,11 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
+require 'est'
 require 'minitest/autorun'
 require 'nokogiri'
-require 'est'
-require 'tmpdir'
 require 'slop'
+require 'tmpdir'
 
 # Est main module test.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
@@ -15,11 +13,10 @@ require 'slop'
 # License:: MIT
 class TestEst < Minitest::Test
   def test_basic
-    Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-d', dir])
+    Dir.mktmpdir('test') do |dir|
       File.write(
         File.join(dir, 'sample.est'),
-        '''
+        '
         date: 12-07-2017
         author: Yegor Bugayenko
         method: champions.pert
@@ -42,10 +39,10 @@ class TestEst < Minitest::Test
             worst-case: 30
             best-case: 8
             most-likely: 16
-        '''
+        '
       )
       matches(
-        Nokogiri::XML(Est::Base.new(opts).xml),
+        Nokogiri::XML(Est::Base.new(opts(['-v', '-d', dir])).xml),
         [
           '/processing-instruction("xml-stylesheet")[contains(.,".xsl")]',
           '/estimate/@version',
@@ -58,10 +55,9 @@ class TestEst < Minitest::Test
   end
 
   def test_empty_dir
-    Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-d', dir])
+    Dir.mktmpdir('test') do |dir|
       matches(
-        Nokogiri::XML(Est::Base.new(opts).xml),
+        Nokogiri::XML(Est::Base.new(opts(['-v', '-d', dir])).xml),
         [
           '/estimate/@version',
           '/estimate/@date',
@@ -72,11 +68,10 @@ class TestEst < Minitest::Test
     end
   end
 
-  def test_empty_dir
-    Dir.mktmpdir 'test' do |dir|
-      opts = opts(['-v', '-d', File.join(dir, 'absent')])
+  def test_absent_dir
+    Dir.mktmpdir('test') do |dir|
       matches(
-        Nokogiri::XML(Est::Base.new(opts).xml),
+        Nokogiri::XML(Est::Base.new(opts(['-v', '-d', File.join(dir, 'absent')])).xml),
         [
           '/estimate/@version',
           '/estimate/@date',
@@ -88,15 +83,15 @@ class TestEst < Minitest::Test
   end
 
   def opts(args)
-    Slop.parse args do
-      on 'v', 'verbose'
-      on 'd', 'dir', argument: :required
+    Slop.parse(args) do
+      on('v', 'verbose')
+      on('d', 'dir', argument: :required)
     end
   end
 
   def matches(xml, xpaths)
     xpaths.each do |xpath|
-      fail "doesn't match '#{xpath}': #{xml}" unless xml.xpath(xpath).size == 1
+      raise(StandardError, "doesn't match '#{xpath}': #{xml}") unless xml.xpath(xpath).size == 1
     end
   end
 end

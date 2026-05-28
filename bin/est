@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
@@ -11,31 +9,17 @@ require 'nokogiri'
 require 'est'
 require 'est/version'
 
-opts = Slop.parse(ARGV, strict: true, help: true) do
-  banner "Usage (#{Est::VERSION}): est [options]"
-  on 'v', 'verbose', 'Enable verbose mode'
-  on 'version', 'Show current version'
-  on(
-    'd',
-    'dir',
-    'Source directory to parse',
-    argument: :required
-  )
-  on(
-    'f',
-    'file',
-    'File to save output into',
-    argument: :required
-  )
-  on(
-    't',
-    'format',
-    'Format to use (xml|html|text)',
-    argument: :required
-  )
-end
+opts =
+  Slop.parse(ARGV, strict: true, help: true) do
+    banner("Usage (#{Est::VERSION}): est [options]")
+    on('v', 'verbose', 'Enable verbose mode')
+    on('version', 'Show current version')
+    on('d', 'dir', 'Source directory to parse', argument: :required)
+    on('f', 'file', 'File to save output into', argument: :required)
+    on('t', 'format', 'Format to use (xml|html|text)', argument: :required)
+  end
 
-fail '-f is mandatory when using -v' if opts.verbose? && !opts.file?
+raise '-f is mandatory when using -v' if opts.verbose? && !opts.file?
 
 if opts.help?
   puts opts
@@ -51,27 +35,21 @@ Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 if opts.file?
   file = File.new(opts[:file], 'w')
-  Est.log.info "output saving into #{file.path}"
+  Est.log.info("output saving into #{file.path}")
 else
   file = STDOUT
 end
 output = Est::Base.new(opts).xml
 if opts[:format].nil? || opts[:format] == 'text'
-  xslt = File.join(
-    File.dirname(File.dirname(__FILE__)),
-    'assets', 'est-text.xsl'
-  )
+  xslt = File.join(File.dirname(File.dirname(__FILE__)), 'assets', 'est-text.xsl')
   output = Nokogiri::XSLT(File.read(xslt)).apply_to(Nokogiri::XML(output))
 elsif opts[:format] == 'html'
-  Est.log.info 'using HTML format'
-  xslt = File.join(
-    File.dirname(File.dirname(__FILE__)),
-    'assets', 'est.xsl'
-  )
+  Est.log.info('using HTML format')
+  xslt = File.join(File.dirname(File.dirname(__FILE__)), 'assets', 'est.xsl')
   output = Nokogiri::XSLT(File.read(xslt)).transform(Nokogiri::XML(output))
 elsif opts[:format] == 'xml'
-  Est.log.info 'using XML format'
+  Est.log.info('using XML format')
 else
-  fail 'invalid format, use html, text, or xml'
+  raise 'invalid format, use html, text, or xml'
 end
 file << output

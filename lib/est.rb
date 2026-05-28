@@ -1,12 +1,10 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-require 'est/version'
 require 'est/estimates'
-require 'nokogiri'
+require 'est/version'
 require 'logger'
+require 'nokogiri'
 require 'time'
 
 # Est main module.
@@ -25,10 +23,8 @@ module Est
   # Get logger.
   def self.log
     unless @logger
-      @logger = Logger.new(STDOUT)
-      @logger.formatter = proc { |severity, _, _, msg|
-        "#{severity}: #{msg.dump}\n"
-      }
+      @logger = Logger.new($stdout)
+      @logger.formatter = proc { |severity, _, _, msg| "#{severity}: #{msg.dump}\n" }
       @logger.level = Logger::ERROR
     end
     @logger
@@ -45,26 +41,26 @@ module Est
     def initialize(opts)
       @opts = opts
       Est.log.level = Logger::INFO if @opts.verbose?
-      Est.log.info "my version is #{Est::VERSION}"
+      Est.log.info("my version is #{Est::VERSION}")
     end
 
     # Generate XML.
     def xml
       dir = @opts.dir? ? @opts[:dir] : Dir.pwd
-      Est.log.info "reading #{dir}"
+      Est.log.info("reading #{dir}")
       estimates = Estimates::Const.new(Estimates.new(dir))
       sanitize(
         Nokogiri::XML::Builder.new do |xml|
           xml << "<?xml-stylesheet type='text/xsl' href='#{xsl}'?>"
           xml.estimate(attrs) do
-            xml.total estimates.total
+            xml.total(estimates.total)
             unless estimates.iterate.empty?
               xml.ests do
                 estimates.iterate.each do |est|
                   xml.est do
-                    xml.date est.date
-                    xml.total est.total
-                    xml.author est.author
+                    xml.date(est.date)
+                    xml.total(est.total)
+                    xml.author(est.author)
                   end
                 end
               end
@@ -94,13 +90,17 @@ module Est
     end
 
     def sanitize(xml)
-      xsd = Nokogiri::XML::Schema(
-        File.read(File.join(File.dirname(__FILE__), '../assets/est.xsd'))
-      )
-      errors = xsd.validate(Nokogiri::XML(xml)).map(&:message)
-      errors.each { |e| Est.log.error e }
+      errors = Nokogiri::XML::Schema(
+        File.read(
+          File.join(
+            File.dirname(__FILE__),
+            '../assets/est.xsd'
+          )
+        )
+      ).validate(Nokogiri::XML(xml)).map(&:message)
+      errors.each { |e| Est.log.error(e) }
       Est.log.error(xml) unless errors.empty?
-      fail SchemaError, errors.join('; ') unless errors.empty?
+      raise(SchemaError, errors.join('; ')) unless errors.empty?
       xml
     end
   end

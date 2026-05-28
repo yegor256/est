@@ -1,13 +1,11 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
+require 'est/estimates'
 require 'minitest/autorun'
 require 'nokogiri'
-require 'est/estimates'
-require 'tmpdir'
 require 'slop'
+require 'tmpdir'
 
 # Est main module test.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
@@ -15,10 +13,10 @@ require 'slop'
 # License:: MIT
 class TestEstimates < Minitest::Test
   def test_basic_calculation
-    Dir.mktmpdir 'test' do |dir|
+    Dir.mktmpdir('test') do |dir|
       File.write(
         File.join(dir, 'first.est'),
-        '''
+        '
         date: 12-08-2017
         author: Yegor Bugayenko
         method: champions.pert
@@ -41,10 +39,9 @@ class TestEstimates < Minitest::Test
             worst-case: 30
             best-case: 8
             most-likely: 16
-        '''
+        '
       )
-      estimates = Est::Estimates.new(dir)
-      assert_equal 79, estimates.total
+      assert_equal(79, Est::Estimates.new(dir).total)
     end
   end
 end

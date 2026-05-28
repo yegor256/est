@@ -1,13 +1,11 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
+require 'est/estimates'
 require 'minitest/autorun'
 require 'nokogiri'
-require 'est/estimates'
-require 'tmpdir'
 require 'slop'
+require 'tmpdir'
 
 # Est main module test.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
@@ -15,11 +13,11 @@ require 'slop'
 # License:: MIT
 class TestEstimate < Minitest::Test
   def test_basic_calculation
-    Dir.mktmpdir 'test' do |dir|
+    Dir.mktmpdir('test') do |dir|
       file = File.join(dir, 'first.est')
       File.write(
         file,
-        '''
+        '
         date: 18-12-2017
         author: Jeff Lebowski
         method: champions.pert
@@ -42,12 +40,12 @@ class TestEstimate < Minitest::Test
             worst-case: 30
             best-case: 8
             most-likely: 16
-        '''
+        '
       )
       estimate = Est::Estimate.new(file)
-      assert_equal Date.parse('18-12-2017'), estimate.date
-      assert_equal 'Jeff Lebowski', estimate.author
-      assert_equal 79, estimate.total
+      assert_equal(Date.parse('18-12-2017'), estimate.date)
+      assert_equal('Jeff Lebowski', estimate.author)
+      assert_equal(79, estimate.total)
     end
   end
 end

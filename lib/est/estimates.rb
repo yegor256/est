@@ -1,11 +1,9 @@
-# encoding: utf-8
-#
 # SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
 require 'est/estimate'
-require 'nokogiri'
 require 'logger'
+require 'nokogiri'
 require 'time'
 
 # Est main module.
@@ -23,31 +21,24 @@ module Est
 
     # Get total estimate.
     def total
-      estimates = iterate
-      if estimates.empty?
-        total = 0
-      else
-        total = estimates.reduce(0) do |a, e|
-          Est.log.info "#{e.date}/#{e.author}: #{e.total}"
-          a + e.total
-        end / estimates.size
-      end
-      total
+      items = iterate
+      return 0 if items.empty?
+      items.reduce(0) do |a, e|
+        Est.log.info("#{e.date}/#{e.author}: #{e.total}")
+        a + e.total
+      end / items.size
     end
 
     # Iterate them all
     def iterate
       unless @iterate
         if File.exist?(@dir) && File.directory?(@dir)
-          @iterate = Dir.entries(@dir)
-            .reject { |f| f.index('.') == 0 }
-            .select { |f| f =~ /^.*\.est$/ }
-            .map { |f| File.join(@dir, f) }
-            .each { |f| Est.log.info "#{f} found" }
-            .map { |f| Estimate.new(f) }
-            .map { |f| Estimate::Const.new(f) }
+          entries = Dir.entries(@dir).reject { |f| f.index('.').zero? }
+          files = entries.grep(/^.*\.est$/).map { |f| File.join(@dir, f) }
+          files.each { |f| Est.log.info("#{f} found") }
+          @iterate = files.map { |f| Estimate::Const.new(Estimate.new(f)) }
         else
-          Est.log.info "#{@dir} is absent or is not a directory"
+          Est.log.info("#{@dir} is absent or is not a directory")
           @iterate = []
         end
       end
@@ -57,6 +48,7 @@ module Est
     # Const estimates.
     class Const
       attr_reader :total, :iterate
+
       # Ctor.
       # +est+:: Original estimates
       def initialize(est)
