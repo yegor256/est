@@ -50,13 +50,12 @@ class TestEstimate < Minitest::Test
   end
 
   def test_rejects_future_date
-    Dir.mktmpdir 'test' do |dir|
+    Dir.mktmpdir('test') do |dir|
       file = File.join(dir, 'future.est')
-      future = (Date.today + 365).strftime('%d-%m-%Y')
       File.write(
         file,
         "
-        date: #{future}
+        date: #{(Date.today + 365).strftime('%d-%m-%Y')}
         author: Marty McFly
         method: champions.pert
         scope:
@@ -69,7 +68,7 @@ class TestEstimate < Minitest::Test
             most-likely: 16
         "
       )
-      assert_raises(RuntimeError) { Est::Estimate.new(file) }
+      assert_raises(ArgumentError) { Est::Estimate.new(file) }
     end
   end
 end
