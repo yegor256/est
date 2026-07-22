@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
- * SPDX-License-Identifier: MIT
- -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  version="1.0" xmlns="http://www.w3.org/1999/xhtml">
+* SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
   <xsl:template match="/estimate">
     <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
     <html lang="en">
@@ -13,7 +12,9 @@
         <meta name="description" content="Estimate"/>
         <meta name="keywords" content="automated estimate"/>
         <meta name="author" content="teamed.io"/>
-        <title><xsl:text>Estimate</xsl:text></title>
+        <title>
+          <xsl:text>Estimate</xsl:text>
+        </title>
         <style type="text/css">
           body {
           background-color: #e6e1ce;
@@ -50,7 +51,9 @@
   <xsl:template match="ests/est">
     <xsl:value-of select="date"/>
     <xsl:text>: </xsl:text>
-    <strong><xsl:value-of select="total"/></strong>
+    <strong>
+      <xsl:value-of select="total"/>
+    </strong>
     <xsl:text> hours by </xsl:text>
     <xsl:value-of select="author"/>
   </xsl:template>

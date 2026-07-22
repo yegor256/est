@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
- * SPDX-License-Identifier: MIT
- -->
+* SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="est">
     <xs:all>
@@ -18,7 +18,7 @@
         <xs:element name="ests" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="est" type="est" minOccurs="1" maxOccurs="unbounded" />
+              <xs:element name="est" type="est" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
