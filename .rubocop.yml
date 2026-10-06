@@ -4,6 +4,7 @@
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - 'vendor/**/*'
   TargetRubyVersion: 2.0
   NewCops: enable
 
