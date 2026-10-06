@@ -1,3 +1,5 @@
+# Estimates in YAML
+
 [![Managed by Zerocracy](http://www.zerocracy.com/badge.svg)](http://www.zerocracy.com)
 [![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/est)](https://www.rultor.com/p/yegor256/est)
 [![We recommend RubyMine](https://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
@@ -11,13 +13,13 @@
 Install it first:
 
 ```bash
-$ gem install est
+gem install est
 ```
 
 Run it locally and read its output:
 
 ```bash
-$ est --help
+est --help
 ```
 
 Every estimate should be in its own file, with `.est` extension (YAML format).
