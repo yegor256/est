@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'coveralls', '~>0.7', require: false
-gem 'cucumber', '~>9.0', require: false
+gem 'cucumber', '~>12.0', require: false
 gem 'minitest', '~>6.0', require: false
 gem 'rake', '>0', require: false
 gem 'rdoc', '>0', require: false
