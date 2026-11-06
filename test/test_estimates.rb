@@ -12,6 +12,14 @@ require 'tmpdir'
 # Copyright:: Copyright (c) 2014-2026 Yegor Bugayenko
 # License:: MIT
 class TestEstimates < Minitest::Test
+  def test_ignores_entries_without_a_dot
+    Dir.mktmpdir('test') do |dir|
+      File.write(File.join(dir, 'README'), 'Estimates live here')
+      Dir.mkdir(File.join(dir, 'old'))
+      assert_empty(Est::Estimates.new(dir).iterate)
+    end
+  end
+
   def test_basic_calculation
     Dir.mktmpdir('test') do |dir|
       File.write(
