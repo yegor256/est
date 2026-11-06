@@ -33,7 +33,7 @@ module Est
     def iterate
       unless @iterate
         if File.exist?(@dir) && File.directory?(@dir)
-          entries = Dir.entries(@dir).reject { |f| f.index('.').zero? }
+          entries = Dir.entries(@dir).reject { |f| f.start_with?('.') }
           files = entries.grep(/^.*\.est$/).map { |f| File.join(@dir, f) }
           files.each { |f| Est.log.info("#{f} found") }
           @iterate = files.map { |f| Estimate::Const.new(Estimate.new(f)) }
