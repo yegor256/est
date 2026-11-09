@@ -83,9 +83,9 @@ class TestEst < Minitest::Test
   end
 
   def opts(args)
-    Slop.parse(args) do
-      on('v', 'verbose')
-      on('d', 'dir', argument: :required)
+    Slop.parse(args) do |options|
+      options.bool('-v', '--verbose')
+      options.string('-d', '--dir')
     end
   end
 
