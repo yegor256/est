@@ -42,7 +42,7 @@ Feature: Command Line Processing
     When I run bin/est with "-v -d . -t xml -f out.xml"
     Then Exit code is zero
     And Stdout contains "reading ."
-    And XML file "out.xml" matches "/estimate[total='79']"
+    And XML file "out.xml" matches "/estimate[total='89']"
 
   Scenario: Simple estimate calculating, in Text
     Given I have a "sample.est" file with content:
@@ -72,8 +72,8 @@ Feature: Command Line Processing
     """
     When I run bin/est with "-d ."
     Then Exit code is zero
-    And Stdout contains "Total: 79"
-    And Stdout contains "2012-08-19: 79 hours by Yegor Bugayenko"
+    And Stdout contains "Total: 89"
+    And Stdout contains "2012-08-19: 89 hours by Yegor Bugayenko"
 
   Scenario: Rejects unknown options
     Given I have a "test.est" file with content:
