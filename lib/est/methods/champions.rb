@@ -30,8 +30,8 @@ module Est
         Est.log.info("#{i}: (#{e['best-case']} + #{e['worst-case']} + #{e['most-likely']} * 4) / 6 = #{t}")
         t
       end.reduce(&:+)
-      result = sum * k * (n / m)
-      Est.log.info("#{sum} * #{k} * (#{n} / #{m}) = #{result}")
+      result = sum * k * n.fdiv(m)
+      Est.log.info("#{sum} * #{k} * #{n}.fdiv(#{m}) = #{result}")
       result.floor
     end
   end

@@ -49,7 +49,7 @@ class TestEstimates < Minitest::Test
             most-likely: 16
         '
       )
-      assert_equal(79, Est::Estimates.new(dir).total)
+      assert_equal(89, Est::Estimates.new(dir).total)
     end
   end
 end
