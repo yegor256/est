@@ -13,9 +13,9 @@ Before do
   FileUtils.mkdir_p(@dir)
   Dir.chdir(@dir)
   @opts =
-    Slop.parse(['-v', '-s', @dir]) do
-      on('v', 'verbose')
-      on('s', 'source', argument: :required)
+    Slop.parse(['-v', '-s', @dir]) do |options|
+      options.bool('-v', '--verbose')
+      options.string('-s', '--source')
     end
 end
 

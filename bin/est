@@ -10,13 +10,14 @@ require 'est'
 require 'est/version'
 
 opts =
-  Slop.parse(ARGV, strict: true, help: true) do
-    banner("Usage (#{Est::VERSION}): est [options]")
-    on('v', 'verbose', 'Enable verbose mode')
-    on('version', 'Show current version')
-    on('d', 'dir', 'Source directory to parse', argument: :required)
-    on('f', 'file', 'File to save output into', argument: :required)
-    on('t', 'format', 'Format to use (xml|html|text)', argument: :required)
+  Slop.parse(ARGV) do |options|
+    options.banner = "Usage (#{Est::VERSION}): est [options]"
+    options.bool('-v', '--verbose', 'Enable verbose mode')
+    options.bool('--version', 'Show current version')
+    options.bool('-h', '--help', 'Show this message')
+    options.string('-d', '--dir', 'Source directory to parse')
+    options.string('-f', '--file', 'File to save output into')
+    options.string('-t', '--format', 'Format to use (xml|html|text)')
   end
 
 raise '-f is mandatory when using -v' if opts.verbose? && !opts.file?
