@@ -45,7 +45,7 @@ class TestEstimate < Minitest::Test
       estimate = Est::Estimate.new(file)
       assert_equal(Date.parse('18-12-2017'), estimate.date)
       assert_equal('Jeff Lebowski', estimate.author)
-      assert_equal(79, estimate.total)
+      assert_equal(89, estimate.total)
     end
   end
 
